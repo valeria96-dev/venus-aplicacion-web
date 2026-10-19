@@ -1,0 +1,651 @@
+/* =========================================================
+   VENUS - Hoja de estilos
+   Enfoque MOBILE FIRST: primero los estilos para celular,
+   luego media queries con min-width para pantallas más grandes.
+   ========================================================= */
+
+/* ---------- 1. VARIABLES (colores y medidas de la marca) ---------- */
+:root {
+  --verde: #2F6B57;          /* color principal de Venus */
+  --verde-oscuro: #234F40;
+  --verde-claro: #DCEBE4;
+  --lila: #6A4FBF;           /* color de acento */
+  --lila-claro: #EBE5F8;
+  --fondo: #F7FAF8;
+  --blanco: #FFFFFF;
+  --texto: #1D2B25;
+  --texto-suave: #4A5A53;
+  --borde: #D6E2DC;          /* bordes decorativos de tarjetas */
+  --borde-campo: #6E827A;    /* bordes de campos: más oscuro para buen contraste */
+  --error: #B3261E;
+  --fuente: "Plus Jakarta Sans", Arial, sans-serif;
+  --radio: 1rem;
+  --espacio: 1.25rem;
+  --ancho-max: 70rem;
+}
+
+/* ---------- 2. BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;    /* modelo de caja: el padding no agranda el elemento */
+}
+
+html {
+  scroll-behavior: smooth;   /* desplazamiento suave al usar el menú */
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background-color: var(--fondo);
+}
+
+/* Imágenes fluidas: nunca más anchas que su contenedor */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--verde-oscuro);
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--verde-oscuro);
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: 65ch;           /* líneas cortas = lectura más cómoda */
+}
+
+a {
+  color: var(--verde);
+}
+
+a:hover {
+  color: var(--lila);
+}
+
+/* Foco visible para quien navega con teclado */
+:focus-visible {
+  outline: 3px solid var(--lila);
+  outline-offset: 3px;
+}
+
+/* ---------- 3. ENLACE "SALTAR AL CONTENIDO" ---------- */
+.saltar {
+  position: absolute;
+  top: -4rem;                /* escondido arriba de la pantalla */
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--verde);
+  color: var(--blanco);
+  font-weight: 700;
+}
+
+.saltar:focus {
+  top: 1rem;                 /* aparece al llegar con la tecla Tab */
+}
+
+/* ---------- 4. CABECERA Y MENÚ ---------- */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem var(--espacio);
+  background-color: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--verde);
+  text-decoration: none;
+}
+
+nav {
+  width: 100%;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;    /* en celular, un enlace debajo de otro */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  display: block;
+  padding: 0.75rem 0.25rem;
+  border-top: 1px solid var(--borde);
+  color: var(--texto);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: var(--verde);
+}
+
+/* El botón solo aparece si JavaScript funciona (clase .js en <html>).
+   Sin JavaScript, el menú queda siempre visible y nadie se queda sin navegación. */
+.menu-boton {
+  display: none;
+  min-height: 44px;          /* tamaño cómodo para tocar con el dedo */
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: var(--lila-claro);
+  color: var(--lila);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.js .menu-boton {
+  display: block;
+}
+
+.js .menu {
+  display: none;
+}
+
+.js .menu.abierto {
+  display: flex;
+}
+
+/* ---------- 5. SECCIONES ---------- */
+main > section {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 3rem var(--espacio);
+  scroll-margin-top: 5rem;   /* para que la cabecera fija no tape el título */
+}
+
+/* ---------- 6. BOTONES ---------- */
+.boton {
+  display: inline-block;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--verde);
+  border-radius: 0.75rem;
+  background-color: var(--verde);
+  color: var(--blanco);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: var(--verde-oscuro);
+  border-color: var(--verde-oscuro);
+  color: var(--blanco);
+}
+
+.boton-secundario {
+  background-color: transparent;
+  color: var(--verde);
+}
+
+.boton-secundario:hover {
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+/* ---------- 7. INICIO (HERO) ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;    /* en celular: texto arriba, imagen abajo */
+  gap: 2rem;
+}
+
+.hero-texto p {
+  font-size: 1.125rem;
+  color: var(--texto-suave);
+}
+
+.hero-imagen {
+  align-self: center;
+  max-width: 16rem;
+  margin: 0;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+/* ---------- 8. TARJETAS (funciones y masajes) ---------- */
+.tarjetas {
+  display: grid;
+  grid-template-columns: 1fr;  /* en celular: una columna */
+  gap: 1rem;
+}
+
+.tarjeta {
+  padding: 1.25rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background-color: var(--blanco);
+}
+
+.tarjeta p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lista de definiciones dentro de cada masaje */
+.masaje dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.masaje dt {
+  font-weight: 700;
+  color: var(--texto-suave);
+}
+
+.masaje dd {
+  margin: 0;
+}
+
+/* ---------- 9. FILTROS DE MASAJES ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.filtro {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--verde);
+  border-radius: 999px;
+  background-color: var(--blanco);
+  color: var(--verde);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filtro:hover {
+  background-color: var(--verde-claro);
+}
+
+.filtro.activo {
+  background-color: var(--verde);
+  color: var(--blanco);
+}
+
+.filtro-estado {
+  min-height: 1.6em;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.ejemplo-sesion {
+  max-width: 28rem;
+  margin: 2rem 0 0;
+}
+
+/* ---------- 10. CÓMO FUNCIONA (pasos numerados) ---------- */
+.pasos {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+
+.pasos li {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.25rem 4rem;
+  border-left: 4px solid var(--lila);
+  border-radius: var(--radio);
+  background-color: var(--blanco);
+  counter-increment: paso;
+}
+
+/* Número del paso dibujado con CSS */
+.pasos li::before {
+  content: counter(paso);
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--lila-claro);
+  color: var(--lila);
+  font-weight: 800;
+}
+
+.pasos p {
+  margin-bottom: 0;
+}
+
+/* ---------- 11. TABLA DE PRODUCTOS ---------- */
+.tabla-contenedor {
+  overflow-x: auto;          /* si la tabla no cabe, se desliza ella sola, no la página */
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--blanco);
+}
+
+caption {
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--borde);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background-color: var(--verde);
+  color: var(--blanco);
+}
+
+tbody th {
+  color: var(--verde-oscuro);
+  white-space: nowrap;
+}
+
+.aviso {
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #B25E09;
+  border-radius: var(--radio);
+  background-color: #FFF4E5;
+}
+
+.aviso p {
+  margin: 0;
+}
+
+/* ---------- 12. FORMULARIO ---------- */
+.formulario {
+  padding: 1.25rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background-color: var(--blanco);
+}
+
+fieldset {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  margin-bottom: 0.75rem;
+  padding: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--verde-oscuro);
+}
+
+.grupo {
+  margin: 1rem 0 0;
+}
+
+.grupo legend {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.grupo label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  margin-right: 1.25rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.campo label {
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 2px solid var(--borde-campo);
+  border-radius: 0.6rem;
+  background-color: var(--blanco);
+  color: var(--texto);
+  font: inherit;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--verde);
+}
+
+/* Casilla de aceptación: casilla y texto en la misma fila */
+.campo-check {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.campo-check input {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.campo-check label {
+  flex: 1;
+  font-weight: 400;
+}
+
+.campo-check .error {
+  width: 100%;
+}
+
+/* Mensajes de error (los escribe JavaScript) */
+.error {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--error);
+}
+
+.error:empty {
+  display: none;
+}
+
+/* Campo marcado como inválido por JavaScript */
+input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mensaje-exito {
+  margin: 1rem 0 0;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+
+.mensaje-exito:empty {
+  display: none;
+}
+
+/* ---------- 13. PIE DE PÁGINA ---------- */
+.pie {
+  padding: 2rem var(--espacio);
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  text-align: center;
+}
+
+.pie address {
+  margin-bottom: 0.5rem;
+  font-style: normal;
+}
+
+.pie a {
+  color: var(--blanco);
+}
+
+.pie p {
+  margin: 0 auto;
+}
+
+.pie :focus-visible {
+  outline-color: var(--blanco);  /* el lila no se vería sobre el verde oscuro */
+}
+
+/* =========================================================
+   MEDIA QUERY 1: TABLET (desde 768px)
+   Justificación: hay espacio para que el menú quepa en una
+   fila, el hero se ponga en dos columnas y las tarjetas en dos.
+   ========================================================= */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  .cabecera {
+    flex-wrap: nowrap;
+    padding: 1rem 2rem;
+  }
+
+  nav {
+    width: auto;
+  }
+
+  .js .menu-boton {
+    display: none;           /* ya no hace falta el botón */
+  }
+
+  .menu,
+  .js .menu {
+    display: flex;
+    flex-direction: row;     /* enlaces en una sola fila */
+    gap: 1.5rem;
+  }
+
+  .menu a {
+    padding: 0.5rem 0;
+    border-top: 0;
+  }
+
+  .hero {
+    flex-direction: row;     /* texto a la izquierda, imagen a la derecha */
+    align-items: center;
+  }
+
+  .hero-texto {
+    flex: 1;
+  }
+
+  .hero-imagen {
+    flex: 0 0 16rem;
+  }
+
+  .tarjetas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .formulario {
+    padding: 2rem;
+  }
+}
+
+/* =========================================================
+   MEDIA QUERY 2: ESCRITORIO (desde 1024px)
+   Justificación: con pantallas anchas, dos columnas dejan
+   mucho espacio vacío; tres columnas aprovechan mejor el ancho.
+   ========================================================= */
+@media (min-width: 1024px) {
+  main > section {
+    padding: 4.5rem 2rem;
+  }
+
+  h1 {
+    font-size: 3.25rem;
+  }
+
+  .hero-imagen {
+    flex-basis: 20rem;
+    max-width: 20rem;
+  }
+
+  .tarjetas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pasos {
+    grid-template-columns: repeat(3, 1fr);  /* los tres pasos en una fila */
+  }
+}
+
+/* Respeta a quien pidió menos movimiento en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

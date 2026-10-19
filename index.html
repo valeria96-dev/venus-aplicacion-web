@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Venus es una app de cuidado facial guiado: masajes paso a paso, progreso con fotos y productos según tu piel y tu presupuesto.">
+  <title>Venus | Cuidado facial guiado</title>
+
+  <!-- Tipografía de la marca (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <!-- Enlace para quien navega con teclado: salta directo al contenido -->
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== ENCABEZADO Y NAVEGACIÓN ===== -->
+  <header class="cabecera">
+    <a class="logo" href="#inicio">Venus</a>
+
+    <!-- Botón del menú para móviles (lo controla JavaScript) -->
+    <button class="menu-boton" id="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
+      Menú
+    </button>
+
+    <nav aria-label="Navegación principal">
+      <ul class="menu" id="menu">
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#masajes">Masajes</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#lista-espera">Lista de espera</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ===== SECCIÓN 1: INICIO ===== -->
+    <section id="inicio" class="hero">
+      <div class="hero-texto">
+        <h1>Tu entrenador personal para el rostro</h1>
+        <p><strong>Venus</strong> te guía mientras te masajeas, mide tu progreso con fotos y te recomienda productos según tu piel y tu presupuesto. Pensada para <em>mujeres y hombres</em>.</p>
+        <a class="boton" href="#lista-espera">Unirme a la lista de espera</a>
+      </div>
+      <figure class="hero-imagen">
+        <img src="img/app-inicio.svg" alt="Pantalla de inicio de Venus con la rutina del día, una racha de 5 días y el recordatorio para tomar la foto diaria." width="320" height="640">
+        <figcaption>Pantalla de inicio de la app.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===== SECCIÓN 2: FUNCIONES ===== -->
+    <section id="funciones">
+      <h2>Qué puedes hacer con Venus</h2>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Análisis de tu piel</h3>
+          <p>Respondes un cuestionario y escaneas tu rostro. Con <abbr title="inteligencia artificial">IA</abbr>, Venus te muestra tu tipo de piel e indicadores como hidratación, luminosidad y firmeza.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Masajes guiados</h3>
+          <p>Sigues cada paso con flechas que muestran hacia dónde mover las manos, un temporizador e instrucciones por voz.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Progreso con fotos</h3>
+          <p>Una silueta guía hace que tus fotos salgan siempre con el mismo ángulo, para comparar el antes y el después por semana o por mes.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Antes del maquillaje</h3>
+          <p>Una rutina corta para limpiar, tonificar, hidratar y preparar la piel.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Antes y después del afeitado</h3>
+          <p>Pasos para afeitarte sin irritación y calmar la piel, con consejos para granitos y vellos encarnados.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Productos para tu presupuesto</h3>
+          <p>Una rutina básica de cuatro pasos en nivel económico, medio o premium, más extras según lo que necesites.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== SECCIÓN 3: MASAJES (con filtro en JavaScript) ===== -->
+    <section id="masajes">
+      <h2>Cinco técnicas de masaje</h2>
+      <p>Filtra las técnicas según lo que buscas hoy.</p>
+
+      <div class="filtros" role="group" aria-label="Filtrar masajes por objetivo">
+        <button type="button" class="filtro activo" data-filtro="todos" aria-pressed="true">Todos</button>
+        <button type="button" class="filtro" data-filtro="antiedad" aria-pressed="false">Antiedad</button>
+        <button type="button" class="filtro" data-filtro="desinflamar" aria-pressed="false">Desinflamar</button>
+        <button type="button" class="filtro" data-filtro="relajar" aria-pressed="false">Relajar</button>
+      </div>
+
+      <!-- Aquí JavaScript escribe cuántas técnicas se muestran (lo lee el lector de pantalla) -->
+      <p class="filtro-estado" id="filtro-estado" aria-live="polite"></p>
+
+      <div class="tarjetas">
+        <article class="tarjeta masaje" data-objetivo="antiedad relajar">
+          <h3>Masaje Kobido</h3>
+          <p>Técnica japonesa de movimientos rítmicos.</p>
+          <dl>
+            <dt>Duración</dt><dd>15 min</dd>
+            <dt>Objetivo</dt><dd>Antiedad y relajar</dd>
+          </dl>
+        </article>
+        <article class="tarjeta masaje" data-objetivo="desinflamar">
+          <h3>Gua Sha</h3>
+          <p>Se hace con una piedra plana que define el contorno del rostro.</p>
+          <dl>
+            <dt>Duración</dt><dd>10 min</dd>
+            <dt>Objetivo</dt><dd>Desinflamar</dd>
+          </dl>
+        </article>
+        <article class="tarjeta masaje" data-objetivo="desinflamar relajar">
+          <h3>Drenaje linfático facial</h3>
+          <p>Movimientos suaves que reducen la hinchazón de la mañana.</p>
+          <dl>
+            <dt>Duración</dt><dd>8 min</dd>
+            <dt>Objetivo</dt><dd>Desinflamar y relajar</dd>
+          </dl>
+        </article>
+        <article class="tarjeta masaje" data-objetivo="antiedad">
+          <h3>Yoga facial</h3>
+          <p>Ejercicios que tonifican los músculos del rostro.</p>
+          <dl>
+            <dt>Duración</dt><dd>12 min</dd>
+            <dt>Objetivo</dt><dd>Antiedad</dd>
+          </dl>
+        </article>
+        <article class="tarjeta masaje" data-objetivo="antiedad">
+          <h3>Masaje circulatorio antienvejecimiento</h3>
+          <p>Activa la circulación y le da luminosidad a la piel.</p>
+          <dl>
+            <dt>Duración</dt><dd>10 min</dd>
+            <dt>Objetivo</dt><dd>Antiedad</dd>
+          </dl>
+        </article>
+      </div>
+
+      <figure class="ejemplo-sesion">
+        <img src="img/sesion-guiada.svg" alt="Rostro dibujado con dos flechas sobre las mejillas que van desde los lados de la nariz hacia las orejas." width="400" height="300" loading="lazy">
+        <figcaption>Un paso de la sesión guiada: deslizas los dedos desde la nariz hacia las orejas, sin presionar fuerte.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===== SECCIÓN 4: CÓMO FUNCIONA (lista ordenada: es una secuencia) ===== -->
+    <section id="como-funciona">
+      <h2>Cómo funciona</h2>
+      <ol class="pasos">
+        <li>
+          <h3>Conoce tu piel</h3>
+          <p>Respondes el cuestionario, escaneas tu rostro y eliges tu presupuesto.</p>
+        </li>
+        <li>
+          <h3>Sigue tu rutina diaria</h3>
+          <p>Haces la sesión guiada recomendada y tomas la <dfn>foto del día</dfn>, una foto con silueta guía que mantiene tu racha.</p>
+        </li>
+        <li>
+          <h3>Mira tus cambios</h3>
+          <p>Cada semana y cada mes comparas tus fotos y recibes recomendaciones actualizadas.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== SECCIÓN 5: PRODUCTOS (tabla con datos estructurados) ===== -->
+    <section id="productos">
+      <h2>Recomendaciones según tus necesidades</h2>
+      <p>Primero recibes una rutina básica de cuatro pasos: limpiador, sérum, hidratante y protector solar. Después, Venus suma productos según lo que marcaste en el cuestionario.</p>
+
+      <div class="tabla-contenedor">
+        <table>
+          <caption>Productos extra según lo que marcas en el cuestionario</caption>
+          <thead>
+            <tr>
+              <th scope="col">Si marcas…</th>
+              <th scope="col">Te recomendamos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Ojeras</th>
+              <td>Contorno de ojos con cafeína o niacinamida</td>
+            </tr>
+            <tr>
+              <th scope="row">Manchas</th>
+              <td>Sérum de vitamina C por la mañana, antes del protector solar</td>
+            </tr>
+            <tr>
+              <th scope="row">Labios secos</th>
+              <td>Bálsamo labial con manteca de karité o ácido hialurónico</td>
+            </tr>
+            <tr>
+              <th scope="row">Acné</th>
+              <td>Tratamiento con ácido salicílico o niacinamida</td>
+            </tr>
+            <tr>
+              <th scope="row">Me afeito</th>
+              <td>Bálsamo post-afeitado sin alcohol</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="aviso">
+        <p><strong>Importante:</strong> Venus ofrece rutinas de cuidado, no tratamientos médicos. Si tu acné es moderado, duele o deja marcas, consulta a un dermatólogo.</p>
+      </aside>
+    </section>
+
+    <!-- ===== SECCIÓN 6: FORMULARIO (validación con JavaScript) ===== -->
+    <section id="lista-espera">
+      <h2>Únete a la lista de espera</h2>
+      <p>Te avisaremos cuando Venus esté disponible. Los campos con * son obligatorios.</p>
+
+      <form class="formulario" id="formulario" action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Datos personales</legend>
+
+          <div class="campo">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej.: Ana" minlength="2" autocomplete="given-name" required aria-describedby="error-nombre">
+            <span class="error" id="error-nombre"></span>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" name="correo" placeholder="nombre@correo.com" autocomplete="email" required aria-describedby="error-correo">
+            <span class="error" id="error-correo"></span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferencias</legend>
+
+          <div class="campo">
+            <label for="interes">¿Qué te interesa más?</label>
+            <select id="interes" name="interes">
+              <option value="masajes">Masajes guiados</option>
+              <option value="maquillaje">Rutina antes del maquillaje</option>
+              <option value="afeitado">Rutina de afeitado</option>
+              <option value="productos">Recomendación de productos</option>
+            </select>
+          </div>
+
+          <fieldset class="grupo">
+            <legend>¿Te afeitas el rostro?</legend>
+            <label><input type="radio" name="afeitado" value="si"> Sí</label>
+            <label><input type="radio" name="afeitado" value="no" checked> No</label>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>¿Tu piel tiene alguna de estas condiciones? (opcional)</legend>
+            <label><input type="checkbox" name="condiciones" value="acne"> Acné</label>
+            <label><input type="checkbox" name="condiciones" value="ojeras"> Ojeras</label>
+            <label><input type="checkbox" name="condiciones" value="manchas"> Manchas</label>
+            <label><input type="checkbox" name="condiciones" value="labios"> Labios secos</label>
+          </fieldset>
+        </fieldset>
+
+        <fieldset>
+          <legend>Información adicional</legend>
+
+          <div class="campo">
+            <label for="comentario">¿Qué te gustaría que tenga Venus? (opcional)</label>
+            <textarea id="comentario" name="comentario" rows="4" maxlength="300" placeholder="Escribe tu idea"></textarea>
+          </div>
+
+          <div class="campo campo-check">
+            <input type="checkbox" id="acepto" name="acepto" required aria-describedby="error-acepto">
+            <label for="acepto">Acepto que Venus guarde mi correo solo para avisarme del lanzamiento *</label>
+            <span class="error" id="error-acepto"></span>
+          </div>
+        </fieldset>
+
+        <div class="botones">
+          <button type="submit" class="boton">Unirme a la lista</button>
+          <button type="reset" class="boton boton-secundario">Borrar datos</button>
+        </div>
+
+        <!-- Mensaje de confirmación (lo llena JavaScript) -->
+        <p class="mensaje-exito" id="mensaje-exito" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie">
+    <address>
+      ¿Preguntas? Escríbenos a <a href="mailto:contacto@venusapp.com">contacto@venusapp.com</a>
+      <!-- Cambia este correo por el real del equipo -->
+    </address>
+    <p>&copy; 2026 Venus. Proyecto académico de Aplicaciones Web, Universidad Politécnica Salesiana.</p>
+  </footer>
+
+  <!-- JavaScript externo al final del body, como se vio en clase -->
+  <script src="js/main.js"></script>
+</body>
+</html>
